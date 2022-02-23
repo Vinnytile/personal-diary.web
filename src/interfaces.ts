@@ -9,3 +9,8 @@ export interface INoteDTO {
     text: string
     userId: string
 }
+
+export interface IUserLoginDTO {
+    email: string
+    password: string
+}

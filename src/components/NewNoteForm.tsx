@@ -12,6 +12,7 @@ export const NewNoteForm: React.FC<NewNoteFormProps> = ({onAdd}) => {
     const buttonClickHandler = (event: React.MouseEvent) => {
         event.preventDefault()
         onAdd(refDescription.current!.value, refText.current!.value)
+        
         refDescription.current!.value = ''
         refText.current!.value = ''
     }
