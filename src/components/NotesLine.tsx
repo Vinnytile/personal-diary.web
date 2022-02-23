@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { INote } from "../interfaces";
+import { INote } from "../interfaces/interfaces";
 
 
 type NotesLineProps = {

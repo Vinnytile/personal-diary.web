@@ -5,7 +5,7 @@ import { NotePage } from './pages/NotePage'
 import { NewNoteFormPage } from './pages/NewNoteFormPage';
 import { LoginPage } from './pages/LoginPage'
 import { ErrorPage } from './pages/ErrorPage'
-import { NavigateFunction } from './components/NavigateFunction'
+import { NavigateFunction } from './helpers/NavigateFunction'
 
 
 

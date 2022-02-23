@@ -1,6 +1,6 @@
 import React from "react";
 import { NewNoteForm } from '../components/NewNoteForm'
-import { INoteDTO } from "../interfaces"
+import { INoteDTO } from "../interfaces/interfaces"
 import NoteApi from '../api/NoteApi'
 import JwtApi from '../api/JwtApi'
 

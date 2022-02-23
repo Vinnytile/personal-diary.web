@@ -1,5 +1,6 @@
 import Api from "./Api";
-import { IUserLoginDTO } from '../interfaces'
+import { IUserLoginDTO } from '../interfaces/interfaces'
+import LocalStorageApi from './LocalStorageApi'
 
 const login = async (userLoginDTO: IUserLoginDTO, navigate: any) => {
 
@@ -7,7 +8,7 @@ const login = async (userLoginDTO: IUserLoginDTO, navigate: any) => {
 
     if (response.data.token !== null) {
         console.log(response.data)
-        localStorage.setItem('token', response.data.token)
+        LocalStorageApi.setToken(response.data.token)
         
         navigate('/notes')
     }

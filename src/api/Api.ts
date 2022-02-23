@@ -1,10 +1,11 @@
 import axios from "axios";
+import LocalStorageApi from './LocalStorageApi'
 
 const BASE_URL = "https://localhost:44301/api/";
 
 axios.interceptors.request.use(
   config => {
-    const token = localStorage.getItem('token');
+    const token = LocalStorageApi.getToken()
     if (token) {
       config.headers!.Authorization = 'Bearer ' + token;
     }

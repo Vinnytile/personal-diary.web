@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import NoteApi from "../api/NoteApi";
 import { Note } from "../components/Note";
-import { INote } from '../interfaces'
+import { INote } from '../interfaces/interfaces'
 
 export const NotePage: React.FC = () => {
     const params = useParams();

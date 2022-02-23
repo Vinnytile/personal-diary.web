@@ -1,4 +1,4 @@
-import { INote, INoteDTO } from "../interfaces";
+import { INote, INoteDTO } from "../interfaces/interfaces";
 import Api from "./Api";
 
 const getNotes = async (): Promise<INote[]> => {

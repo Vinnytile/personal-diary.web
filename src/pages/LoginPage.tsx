@@ -1,6 +1,6 @@
 import React from "react";
 import { LoginForm } from "../components/LoginForm";
-import { IUserLoginDTO } from "../interfaces"
+import { IUserLoginDTO } from "../interfaces/interfaces"
 import AuthApi from '../api/AuthApi'
 import { useNavigate } from "react-router-dom";
 

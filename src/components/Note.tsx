@@ -1,5 +1,5 @@
 import React from "react";
-import { INote } from "../interfaces";
+import { INote } from "../interfaces/interfaces";
 
 type NoteProps = {
     note: INote | undefined

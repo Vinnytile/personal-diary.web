@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NotesLine } from '../components/NotesLine'
-import { INote } from "../interfaces";
+import { INote } from "../interfaces/interfaces";
 import NoteApi from '../api/NoteApi'
 
 export const NotesLinePage: React.FC = () => {
