@@ -1,16 +1,16 @@
 import React, { useRef } from "react";
 
-type LoginFormProps = {
-    onLogin(email: string, password: string): void
+type RegisterFormProps = {
+    onRegister(email: string, password: string): void
 }
 
-export const LoginForm: React.FC<LoginFormProps> = ({onLogin}) => {
+export const RegisterForm: React.FC<RegisterFormProps> = ({onRegister}) => {
     const refEmail = useRef<HTMLInputElement>(null)
     const refPassword = useRef<HTMLInputElement>(null)
 
-    const loginClickHandler = (event: React.MouseEvent) => {
+    const registerClickHandler = (event: React.MouseEvent) => {
         event.preventDefault()
-        onLogin(refEmail.current!.value, refPassword.current!.value)
+        onRegister(refEmail.current!.value, refPassword.current!.value)
 
         refEmail.current!.value = ''
         refPassword.current!.value = ''
@@ -37,10 +37,9 @@ export const LoginForm: React.FC<LoginFormProps> = ({onLogin}) => {
                 Input Password
             </label>
             <button
-                type="button"
-                onClick={event => loginClickHandler(event)}
+                onClick={event => registerClickHandler(event)}
             >
-                Login
+                Register
             </button>
         </div>
     );

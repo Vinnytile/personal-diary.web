@@ -21,8 +21,6 @@ const createNote = async (newNote: INoteDTO) => {
 
 const deleteNote = async (noteId: string | undefined): Promise<void> => {
     const response = await Api.remove(`notes/${noteId}`);
-
-    console.log(response)
 }
 
 const exportedObject = {

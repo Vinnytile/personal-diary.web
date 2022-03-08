@@ -4,6 +4,7 @@ import { NotesLinePage } from './pages/NotesLinePage'
 import { NotePage } from './pages/NotePage'
 import { NewNoteFormPage } from './pages/NewNoteFormPage';
 import { LoginPage } from './pages/LoginPage'
+import { RegisterPage } from './pages/RegisterPage'
 import { ErrorPage } from './pages/ErrorPage'
 import { NavigateFunction } from './helpers/NavigateFunction'
 
@@ -19,6 +20,7 @@ const App: React.FC = () => {
         <Route element={<NotePage />} path="/note/:id" />
         <Route element={<NewNoteFormPage />} path="/newNote" />
         <Route element={<LoginPage />} path="/login" />
+        <Route element={<RegisterPage />} path="/register" />
         <Route element={<ErrorPage />}path="*" />
       </Routes>
     </BrowserRouter>
