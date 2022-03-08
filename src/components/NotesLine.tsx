@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { INote } from "../interfaces/interfaces";
+import AuthApi from '../api/AuthApi'
 
 
 type NotesLineProps = {
@@ -15,11 +16,29 @@ export const NotesLine: React.FC<NotesLineProps> = ({notes, onRemove}) => {
         onRemove(noteId)
     }
 
+    const logoutClickHandler = (event: React.MouseEvent) => {
+        event.preventDefault()
+        AuthApi.logout();
+    }
+
     return (
         <div>
-            <Link to={`/newNote`}>
-                <button>Go</button>
-            </Link>
+            <p>
+                <Link to={`/newNote`}>
+                    <button>New Note</button>
+                </Link>
+            </p>
+            <p>
+                <Link to={`/register`}>
+                    <button>Register</button>
+                </Link>
+            </p>
+            <button
+                type="button"
+                onClick={event => logoutClickHandler(event)}
+            >
+                Logout
+            </button>
             <ul>
                 {notes.map(note => {
                     return (
