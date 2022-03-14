@@ -7,6 +7,7 @@ import { LoginPage } from './pages/LoginPage'
 import { RegisterPage } from './pages/RegisterPage'
 import { ErrorPage } from './pages/ErrorPage'
 import { NavigateFunction } from './helpers/NavigateFunction'
+import { WebSocketPage } from './pages/WebSocketPage';
 
 
 
@@ -21,6 +22,7 @@ const App: React.FC = () => {
         <Route element={<NewNoteFormPage />} path="/newNote" />
         <Route element={<LoginPage />} path="/login" />
         <Route element={<RegisterPage />} path="/register" />
+        <Route element={<WebSocketPage />} path="/websocket" />
         <Route element={<ErrorPage />}path="*" />
       </Routes>
     </BrowserRouter>
