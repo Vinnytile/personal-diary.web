@@ -1,19 +1,27 @@
-import React, { useRef } from "react";
+import React, { MutableRefObject, useRef } from "react";
+import { Link } from "react-router-dom";
 
 type LoginFormProps = {
+    userId: MutableRefObject<string>
     onLogin(email: string, password: string): void
 }
 
-export const LoginForm: React.FC<LoginFormProps> = ({onLogin}) => {
+export const LoginForm: React.FC<LoginFormProps> = ({userId, onLogin}) => {
+    const [disable, setDisable] = React.useState(true);
     const refEmail = useRef<HTMLInputElement>(null)
     const refPassword = useRef<HTMLInputElement>(null)
 
-    const loginClickHandler = (event: React.MouseEvent) => {
+    const loginClickHandler = async (event: React.MouseEvent) => {
         event.preventDefault()
-        onLogin(refEmail.current!.value, refPassword.current!.value)
+        await onLogin(refEmail.current!.value, refPassword.current!.value)
 
         refEmail.current!.value = ''
         refPassword.current!.value = ''
+
+        if (userId.current)
+        {
+            setDisable(false)
+        }
     }
 
     return (
@@ -40,8 +48,15 @@ export const LoginForm: React.FC<LoginFormProps> = ({onLogin}) => {
                 type="button"
                 onClick={event => loginClickHandler(event)}
             >
-                Login
+                Login User
             </button>
+            <Link to={`/loginFace/${userId.current}`} >
+                <button 
+                    disabled={disable}
+                >
+                    Login Face
+                </button>
+            </Link>
         </div>
     );
 }
