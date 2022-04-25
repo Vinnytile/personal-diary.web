@@ -1,19 +1,22 @@
-import React from "react";
+import React, { useRef } from "react";
 import { IUserRegisterDTO } from "../interfaces/interfaces"
 import AuthApi from '../api/AuthApi'
-import { RegisterForm } from "../components/RegisterForm";
+import { RegisterForm } from "../components/RegisterForm/RegisterForm";
 
 export const RegisterPage: React.FC = () => {
+    const userId = useRef<string>('')
+
     const registerHandler = async (email: string, password: string): Promise<void> => {
         const newUser: IUserRegisterDTO = {
           email: email,
           password: password
         }
 
-        await AuthApi.register(newUser)
+        const result = await AuthApi.register(newUser)
+        userId.current = result
     }
 
     return (
-        <RegisterForm onRegister={registerHandler} />
+        <RegisterForm userId={userId} onRegister={registerHandler} />
     );
 }
