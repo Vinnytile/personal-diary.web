@@ -17,5 +17,6 @@ export interface IUserLoginDTO {
 
 export interface IUserRegisterDTO {
     email: string
+    username: string
     password: string
 }

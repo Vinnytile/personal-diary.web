@@ -5,10 +5,11 @@ type WebCamCanvasProps = {
     updateMsgData(data: string, succeed: boolean): void
 }
 
-var ws: any;
+var ws: any
 
 export const WebSocketFunction: React.FC<WebCamCanvasProps> = ({isClose, updateMsgData}) => {
     ws = new WebSocket("wss://localhost:44301/ws")
+    
     const connStatusRef = useRef<string>("");
 
     useEffect(() => {
@@ -24,7 +25,9 @@ export const WebSocketFunction: React.FC<WebCamCanvasProps> = ({isClose, updateM
             gettingData();
         }
 
-        return () => ws.close(); // кода меняется isPaused - соединение закрывается
+        return () => {
+            ws.close();
+        }
     }, [ws, isClose]);
 
 
@@ -32,11 +35,13 @@ export const WebSocketFunction: React.FC<WebCamCanvasProps> = ({isClose, updateM
         if (!ws) return;
 
         ws.onmessage = (e: any) => { //подписка на получение данных по вебсокету
-            if (isClose)
+            if (isClose) {
                 return;
-            //console.log("Websocket data receive")
+            }
+
             const message = JSON.parse(e.data);
-            updateMsgData(message.Content, message.Succeed as boolean)
+            console.log(message.Succeed)
+            updateMsgData(message.Content, message.Succeed as boolean) 
         };
     }, [isClose]);
 

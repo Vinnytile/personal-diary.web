@@ -50,6 +50,17 @@ const post = async (url: string, data?: any) => {
   return response;
 };
 
+const put = async (url: string, data?: any) => {
+  const response = await axios.put(BASE_URL + url, data, {
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": 'application/json',
+    },
+  });
+
+  return response;
+};
+
 const remove = async (url: string) => {
     const response = await axios.delete(BASE_URL + url);
 
@@ -59,6 +70,7 @@ const remove = async (url: string) => {
 const exportedObject = {
     get,
     post,
+    put,
     remove,
     setupResponseInterceptors
 };

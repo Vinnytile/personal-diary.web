@@ -3,8 +3,15 @@ import { IUserLoginDTO, IUserRegisterDTO } from '../interfaces/interfaces'
 import LocalStorageApi from './LocalStorageApi'
 
 const login = async (userLoginDTO: IUserLoginDTO) => {
-
     const response = await Api.post(`auth/login`, userLoginDTO)
+    
+    LocalStorageApi.setToken(response.data.token)
+    
+    return true
+}
+
+const loginFace = async (userLoginDTO: IUserLoginDTO) => {
+    const response = await Api.post(`auth/loginFace`, userLoginDTO)
 
     return response.data.userId
 }
@@ -31,6 +38,7 @@ const logout = () => {
 
 const exportedObject = {
     login,
+    loginFace,
     register,
     registerFace,
     generateJwtToken,

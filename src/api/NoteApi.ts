@@ -19,6 +19,12 @@ const createNote = async (newNote: INoteDTO) => {
     return response.data;
 }
 
+const changeNote = async (id: string, note: INoteDTO) => {
+    const response = await Api.put(`notes/${id}`, note);
+
+    return response.data;
+} 
+
 const deleteNote = async (noteId: string | undefined): Promise<void> => {
     const response = await Api.remove(`notes/${noteId}`);
 }
@@ -27,6 +33,7 @@ const exportedObject = {
     getNotes,
     getNoteById,
     createNote,
+    changeNote,
     deleteNote
 };
 
