@@ -1,7 +1,9 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { INote } from "../interfaces/interfaces";
-import AuthApi from '../api/AuthApi'
+import { Link, useNavigate } from "react-router-dom";
+import { INote } from "../../interfaces/interfaces";
+import AuthApi from '../../api/AuthApi'
+import { NoteInLine } from "./NoteInLine";
+import './NotesLineStyle.scss'
 
 
 type NotesLineProps = {
@@ -10,15 +12,19 @@ type NotesLineProps = {
 }
 
 export const NotesLine: React.FC<NotesLineProps> = ({notes, onRemove}) => {
+    const navigate = useNavigate();
 
-    const removeHandler = (event: React.MouseEvent, noteId: string) => {
-        event.preventDefault()
+    const removeHandler = (noteId: string) => {
         onRemove(noteId)
     }
 
     const logoutClickHandler = (event: React.MouseEvent) => {
         event.preventDefault()
         AuthApi.logout();
+    }
+
+    const noteClickHandler = (noteId: string) => {
+        navigate(`/note/${noteId}`);
     }
 
     return (
@@ -42,14 +48,8 @@ export const NotesLine: React.FC<NotesLineProps> = ({notes, onRemove}) => {
             <ul>
                 {notes.map(note => {
                     return (
-                        <li key={note.id}>
-                            <p>{note.id}</p>
-                            <p>{note.description}</p>
-                            <p>{note.text}</p>
-                            <Link to={`/note/${note.id}`}>
-                                <button>Open</button>
-                            </Link>
-                            <button onClick={event => removeHandler(event, note.id)}>Delete</button>
+                        <li key={note.id} onClick={event => noteClickHandler(note.id)} className="notesline-li">
+                            <NoteInLine note={note} onRemove={removeHandler}/>
                         </li>
                     )
                 })}

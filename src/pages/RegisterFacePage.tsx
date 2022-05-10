@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import AuthApi from "../api/AuthApi";
-import { RegisterFaceWebCam } from "../components/RegisterFaceWebCam";
+import { RegisterFaceWebCam } from "../components/RegisterFaceWebCam/RegisterFaceWebCam";
 import { WebSocketFunction } from "../helpers/WebSocketFunction";
 
 export const RegisterFacePage: React.FC = () => {

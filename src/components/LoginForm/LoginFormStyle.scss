@@ -1,0 +1,34 @@
+@use '../../colors';
+
+.general-form-log {
+    background-color: colors.$form-color;
+    text-align: center;
+    position: absolute;
+    padding: 20px;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+
+    border-radius: 1.5rem;
+    color: colors.$text-color
+}
+  
+.form-group-own-log {
+    margin-bottom: 2rem;
+}
+  
+.form-control-own-log {
+    width: 90% !important;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 0.1rem;
+}
+  
+.log-button {
+    background-color: colors.$button-color !important;
+    color: colors.$text-color !important;
+    width: 10rem;
+
+    border: none !important;
+}

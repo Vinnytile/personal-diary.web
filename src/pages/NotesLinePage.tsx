@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { NotesLine } from '../components/NotesLine'
+import { NotesLine } from '../components/NotesLine/NotesLine'
 import { INote } from "../interfaces/interfaces";
 import NoteApi from '../api/NoteApi'
 

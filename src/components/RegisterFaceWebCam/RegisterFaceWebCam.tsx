@@ -1,17 +1,18 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { sendData } from "../helpers/WebSocketFunction";
-import { MessageTypes } from "../interfaces/enums";
+import { sendData } from "../../helpers/WebSocketFunction";
+import { MessageTypes } from "../../interfaces/enums";
+import './RegisterFaceWebCamStyle.scss';
 
-type LoginFaceWebCamProps = {
+type RegisterFaceWebCamProps = {
     userId?: string
     msgData: React.MutableRefObject<string>
 	regFace: React.MutableRefObject<boolean>
     updateIsClose(data: boolean): void
 }
 
-export const LoginFaceWebCam: React.FC<LoginFaceWebCamProps> = ({userId, regFace, msgData, updateIsClose}) => {
-    const [disable, setDisable] = React.useState(true);
+export const RegisterFaceWebCam: React.FC<RegisterFaceWebCamProps> = ({userId, regFace, msgData, updateIsClose}) => {
+	const [disable, setDisable] = React.useState(true);
     const [intervalId, setIntervalId] = useState<number>(0)
 	const [intervalId2, setIntervalId2] = useState<number>(0)
     const shouldSave = useRef<boolean>(false)
@@ -28,7 +29,7 @@ export const LoginFaceWebCam: React.FC<LoginFaceWebCamProps> = ({userId, regFace
 
     const getVideo = () => {
         navigator.mediaDevices
-          .getUserMedia({ video: { width: 320 } })
+          .getUserMedia({ video: { width: 720 } })
           .then(stream => {
             let video = videoRef.current;
             video.srcObject = stream;
@@ -44,8 +45,8 @@ export const LoginFaceWebCam: React.FC<LoginFaceWebCamProps> = ({userId, regFace
         let photo = photoRef.current;
         let ctx = photo.getContext("2d");
     
-        const width = 320;
-        const height = 240;
+        const width = 480;
+        const height = 360;
         photo.width = width;
         photo.height = height;
 
@@ -58,10 +59,10 @@ export const LoginFaceWebCam: React.FC<LoginFaceWebCamProps> = ({userId, regFace
         const intervalId = window.setInterval(() => {
             ctx.drawImage(video, 0, 0, width, height);
             var canvas = document.getElementById('canvas') as HTMLCanvasElement;
-            var dataURL = canvas.toDataURL('image/jpeg', 0.9);
+            var dataURL = canvas.toDataURL('image/jpeg', 0.7);
             var dataToSend = {
                 UserId: userId,
-                Type: MessageTypes.LoginFace,
+                Type: MessageTypes.RegisterFace,
                 Content: dataURL,
                 ShouldSave: shouldSave.current
             }
@@ -86,11 +87,11 @@ export const LoginFaceWebCam: React.FC<LoginFaceWebCamProps> = ({userId, regFace
 		setIntervalId2(intervalId2)
     }
 
-    const closeConnection = () => {
-	  	window.clearInterval(intervalId2)
+    const navigateToLoginSwitcher = () => {
+        window.clearInterval(intervalId2)
       	window.clearInterval(intervalId)
       	updateIsClose(true)
-      	navigate('/notes');
+        navigate('/loginSwitcher');
     }
 
     const setSave = () => {
@@ -98,12 +99,26 @@ export const LoginFaceWebCam: React.FC<LoginFaceWebCamProps> = ({userId, regFace
     }
 
     return (
-        <div>
+        <div className="general-component-regface">
             <video hidden onCanPlay={paintToCanvas} ref={videoRef} />
             <canvas hidden id="canvas" ref={photoRef} />
-            <canvas id="canvas2" ref={photo2Ref} />
-            <button onClick={setSave}>Save photo</button>
-            <button onClick={closeConnection} disabled={disable}>Close connection</button>
+            <canvas id="canvas2" ref={photo2Ref} className="canvas-component-regface shadow" />
+            <div>
+                <button 
+                    onClick={setSave} 
+                    hidden={!disable} 
+                    className="btn btn-primary regface-button"
+                >
+                    Start registration
+                </button>
+                <button 
+                    onClick={navigateToLoginSwitcher} 
+                    hidden={disable} 
+                    className="btn btn-primary regface-button"
+                >
+                    Login
+                </button>
+            </div>
         </div>
     );
 }
