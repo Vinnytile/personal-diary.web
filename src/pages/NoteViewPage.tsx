@@ -31,7 +31,11 @@ export const NoteViewPage: React.FC = () => {
         await NoteApi.changeNote(params.id, newNote)
     }
 
+    const deleteHandler = async () => {
+        await NoteApi.deleteNote(params.id)
+    }
+
     return (
-        <NoteView note={note} onSave={saveHandler}/>
+        <NoteView note={note} onSave={saveHandler} onDelete={deleteHandler}/>
     );
 }

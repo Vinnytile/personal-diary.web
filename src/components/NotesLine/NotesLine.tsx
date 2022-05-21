@@ -1,8 +1,7 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { INote } from "../../interfaces/interfaces";
-import AuthApi from '../../api/AuthApi'
-import { NoteInLine } from "./NoteInLine";
+import { NotePreview } from "../NotePreview/NotePreview";
 import './NotesLineStyle.scss'
 
 
@@ -14,13 +13,8 @@ type NotesLineProps = {
 export const NotesLine: React.FC<NotesLineProps> = ({notes, onRemove}) => {
     const navigate = useNavigate();
 
-    const removeHandler = (noteId: string) => {
-        onRemove(noteId)
-    }
-
-    const logoutClickHandler = (event: React.MouseEvent) => {
-        event.preventDefault()
-        AuthApi.logout();
+    const createNewNoteClickHandler = () => {
+        navigate(`/newNote`);
     }
 
     const noteClickHandler = (noteId: string) => {
@@ -29,27 +23,19 @@ export const NotesLine: React.FC<NotesLineProps> = ({notes, onRemove}) => {
 
     return (
         <div>
-            <p>
-                <Link to={`/newNote`}>
-                    <button>New Note</button>
-                </Link>
-            </p>
-            <p>
-                <Link to={`/register`}>
-                    <button>Register</button>
-                </Link>
-            </p>
-            <button
-                type="button"
-                onClick={event => logoutClickHandler(event)}
-            >
-                Logout
-            </button>
+            <div className="create-form">
+                <button 
+                    onClick={createNewNoteClickHandler}
+                    className="btn btn-success create-button"
+                >
+                    Create new note
+                </button>
+            </div>
             <ul>
                 {notes.map(note => {
                     return (
                         <li key={note.id} onClick={event => noteClickHandler(note.id)} className="notesline-li">
-                            <NoteInLine note={note} onRemove={removeHandler}/>
+                            <NotePreview note={note}/>
                         </li>
                     )
                 })}

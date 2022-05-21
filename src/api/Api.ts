@@ -22,7 +22,7 @@ const setupResponseInterceptors = (navigate: any) => {
     error => {
       if (error.response) {
         if (error.response.status === 401 || error.response.status === 403) {
-          navigate('/login');
+          navigate('/loginSwitcher');
         }
       }
       

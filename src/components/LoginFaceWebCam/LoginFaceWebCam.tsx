@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { sendData } from "../../helpers/WebSocketFunction";
 import { MessageTypes } from "../../interfaces/enums";
@@ -12,7 +12,7 @@ type LoginFaceWebCamProps = {
 }
 
 export const LoginFaceWebCam: React.FC<LoginFaceWebCamProps> = ({regFace, msgData, updateIsClose, onLogin}) => {
-    const [disable, setDisable] = React.useState(true);
+    const [disable, setDisable] = React.useState<boolean>(true);
     const [intervalId, setIntervalId] = useState<number>(0)
 	const [intervalId2, setIntervalId2] = useState<number>(0)
     const userIdRef = useRef<string>('')
@@ -24,10 +24,6 @@ export const LoginFaceWebCam: React.FC<LoginFaceWebCamProps> = ({regFace, msgDat
     const photo2Ref = useRef<any>(null)
 
     const navigate = useNavigate();
-
-    useEffect(() => {
-      //getVideo();
-    }, [userIdRef]);
 
     const getVideo = () => {
         navigator.mediaDevices
@@ -139,13 +135,6 @@ export const LoginFaceWebCam: React.FC<LoginFaceWebCamProps> = ({regFace, msgDat
                     <canvas hidden id="canvas" ref={photoRef} />
                 <canvas id="canvas2" ref={photo2Ref} className="canvas-component-logface"/>
                 <div>
-                    <button 
-                        onClick={setSave}
-                        hidden={!disable || userIdRef.current === ''}
-                        className="btn btn-success logface-button"
-                    >
-                        Start login
-                    </button>
                     <button 
                         onClick={closeConnection} 
                         hidden={disable}
