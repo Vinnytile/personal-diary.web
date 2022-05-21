@@ -3,3 +3,8 @@
 body {
   background-color: colors.$background-color !important;
 }
+
+.btn:focus, .btn:active, .btn:hover{
+  box-shadow: none!important;
+  outline: 0;
+}

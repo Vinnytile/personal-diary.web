@@ -15,11 +15,11 @@ export const WebSocketFunction: React.FC<WebCamCanvasProps> = ({isClose, updateM
     useEffect(() => {
         if (!isClose) {
             ws.onopen = () => {
-                connStatusRef.current = "Websocket connection opened";	// callback на ивент открытия соединения
+                connStatusRef.current = "Websocket connection opened";
                 console.log(connStatusRef.current);
             }
             ws.onclose = () => {
-                connStatusRef.current = "Websocket connection closed"; // callback на ивент закрытия соединения
+                connStatusRef.current = "Websocket connection closed";
                 console.log(connStatusRef.current);
             }
             gettingData();
@@ -34,7 +34,7 @@ export const WebSocketFunction: React.FC<WebCamCanvasProps> = ({isClose, updateM
     const gettingData = useCallback(() => {
         if (!ws) return;
 
-        ws.onmessage = (e: any) => { //подписка на получение данных по вебсокету
+        ws.onmessage = (e: any) => {
             if (isClose) {
                 return;
             }

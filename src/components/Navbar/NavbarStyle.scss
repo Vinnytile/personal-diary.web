@@ -1,0 +1,19 @@
+@use '../../colors';
+
+.navbar-content {
+    margin-left: auto;
+}
+
+.navbar-general {
+    background-color: colors.$navbar-color !important;
+    padding: 1rem;
+}
+
+.navbar-button {
+    background-color: colors.$navbar-color;
+    color: colors.$text-color !important;
+    border: none !important;
+
+    margin-left: 1rem;
+    margin-right: 1rem;
+}

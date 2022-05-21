@@ -1,48 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { INote } from "../../interfaces/interfaces";
 import './NoteViewStyle.scss'
-
-// The editor core
 import type { Value } from '@react-page/editor';
 import Editor from '@react-page/editor';
-
-// import the main css, uncomment this: (this is commented in the example because of https://github.com/vercel/next.js/issues/19717)
 import '@react-page/editor/lib/index.css';
-
-// The rich text area plugin
 import slate from '@react-page/plugins-slate';
-// image
-//import image from '@react-page/plugins-image';
-
-// Stylesheets for the rich text area plugin
-// uncomment this
 import '@react-page/plugins-slate/lib/index.css';
 import { useNavigate } from "react-router-dom";
 
-// Stylesheets for the imagea plugin
-//import '@react-page/plugins-image/lib/index.css';
-
-// Define which plugins we want to use.
 const cellPlugins = [slate()];
 
 type NoteProps = {
     note: INote | undefined
     onSave(description: string, text: string): void
+    onDelete(): void
 }
 
-export const NoteView: React.FC<NoteProps> = ({note, onSave}) => {
+export const NoteView: React.FC<NoteProps> = ({note, onSave, onDelete}) => {
     const [description, setDescription] = useState<string>('')
     const [text, setText] = useState<Value>(null);
-    const [prevDescription, setPrevDescription] = useState<string>('')
-    const [prevText, setPrevText] = useState<Value>(null);
     const navigate = useNavigate();
 
     useEffect(() => {
         if (note) {
             setDescription(note.description)
             setText(JSON.parse(note.text))
-            setPrevDescription(note.description)
-            setPrevText(JSON.parse(note.text))
         }
     }, [note]);
 
@@ -53,6 +35,15 @@ export const NoteView: React.FC<NoteProps> = ({note, onSave}) => {
     const buttonSaveClickHandler = async (event) => {
         const textJson = JSON.stringify(text);
         await onSave(description, textJson);
+    }
+
+    const buttonDiscardClickHandler = (event: React.MouseEvent) => {
+        navigate('/notes');
+    }
+
+    const buttonDeleteClickHandler = async (event: React.MouseEvent) => {
+        await onDelete();
+        navigate('/notes');
     }
 
     return (
@@ -82,10 +73,16 @@ export const NoteView: React.FC<NoteProps> = ({note, onSave}) => {
                     Save
                 </button>
                 <button
-                    //onClick={event => buttonDiscardClickHandler(event)}
+                    onClick={event => buttonDiscardClickHandler(event)}
                     className="btn btn-primary noteview-button"
                 >
                     Discard changes
+                </button>
+                <button
+                    onClick={event => buttonDeleteClickHandler(event)}
+                    className="btn btn-primary noteview-button"
+                >
+                    Delete
                 </button>
             </div>
             </div>
