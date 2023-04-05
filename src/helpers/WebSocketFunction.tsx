@@ -8,7 +8,7 @@ type WebCamCanvasProps = {
 var ws: any
 
 export const WebSocketFunction: React.FC<WebCamCanvasProps> = ({isClose, updateMsgData}) => {
-    ws = new WebSocket("wss://localhost:44301/ws")
+    ws = new WebSocket("wss://localhost:5001/ws")
     
     const connStatusRef = useRef<string>("");
 

@@ -1,7 +1,7 @@
 import axios from "axios";
 import LocalStorageApi from './LocalStorageApi'
 
-const BASE_URL = "https://localhost:44301/api/";
+const BASE_URL = "https://localhost:5001/api/";
 
 axios.interceptors.request.use(
   config => {
