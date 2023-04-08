@@ -7,7 +7,7 @@ export interface INote {
 export interface INoteDTO {
     description: string
     text: string
-    userId: string
+    userIdentityFID: string
 }
 
 export interface IUserLoginDTO {
@@ -19,4 +19,13 @@ export interface IUserRegisterDTO {
     email: string
     username: string
     password: string
+}
+
+export interface IUserProfileDTO {
+    username: string
+    firstname: string
+    lastname: string
+    age: number
+    dateOfBirth: Date
+    userIdentityFID: string
 }

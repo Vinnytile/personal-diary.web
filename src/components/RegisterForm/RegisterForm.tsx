@@ -29,7 +29,8 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({userId, onRegister}) 
         refUsername.current!.value = ''
         refPassword.current!.value = ''
 
-        navigate(`/registerFace/${userId.current}`);
+        //navigate(`/registerFace/${userId.current}`);
+        navigate(`/registerProfile/${userId.current}`);
     }
 
     return (

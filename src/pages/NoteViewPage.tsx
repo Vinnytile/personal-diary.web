@@ -21,11 +21,11 @@ export const NoteViewPage: React.FC = () => {
     }, [])
 
     const saveHandler = async (description: string, text: string): Promise<void> => {
-        const userId: string = JwtApi.getUserIdFromJwt()
+        const userIdentityId: string = JwtApi.getUserIdFromJwt()
         const newNote: INoteDTO = {
           description: description,
           text: text,
-          userId: userId
+          userIdentityFID: userIdentityId
         }
 
         await NoteApi.changeNote(params.id, newNote)
