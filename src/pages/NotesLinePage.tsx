@@ -2,14 +2,23 @@ import React, { useEffect, useState } from "react";
 import { NotesLine } from '../components/NotesLine/NotesLine'
 import { INote } from "../interfaces/interfaces";
 import NoteApi from '../api/NoteApi'
+import JwtApi from "../api/JwtApi";
+import { useNavigate } from "react-router-dom";
 
 export const NotesLinePage: React.FC = () => {
     const [notes, setNotes] = useState<INote[]>([])
+    const navigate = useNavigate();
 
     const fetchData = async () => {
-        const data = await NoteApi.getNotes()
+        try {
+            const userIdentityId: string = JwtApi.getUserIdFromJwt()
+            const data = await NoteApi.getNotes(userIdentityId)
 
-        setNotes(data)
+            setNotes(data)
+        }
+        catch (error) {
+            navigate('/loginSwitcher');
+        }
     };
 
     useEffect(()  => {

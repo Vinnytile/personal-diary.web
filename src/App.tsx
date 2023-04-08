@@ -11,6 +11,7 @@ import { RegisterFacePage } from './pages/RegisterFacePage';
 import { LoginFacePage } from './pages/LoginFacePage';
 import { LoginSwitcherPage } from './pages/LoginSwitcherPage';
 import { Navbar } from './components/Navbar/Navbar';
+import { RegisterProfilePage } from './pages/RegisterProfilePage';
 
 const App: React.FC = () => {
   return (
@@ -26,6 +27,7 @@ const App: React.FC = () => {
         <Route element={<LoginFacePage />} path="/loginFace" />
         <Route element={<RegisterPage />} path="/register" />
         <Route element={<RegisterFacePage />} path="/registerFace/:userId" />
+        <Route element={<RegisterProfilePage />} path="/registerProfile/:userIdentityId" />
         <Route element={<LoginSwitcherPage />} path="/loginSwitcher" />
         <Route element={<ErrorPage />} path="*" />
       </Routes>

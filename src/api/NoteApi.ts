@@ -1,14 +1,14 @@
 import { INote, INoteDTO } from "../interfaces/interfaces";
 import Api from "./Api";
 
-const getNotes = async (): Promise<INote[]> => {
-    const response = await Api.get('notes');
+const getNotes = async (userIdentityId: string | undefined): Promise<INote[]> => {
+    const response = await Api.get(`notes/${userIdentityId}`);
 
     return response.data;
 };
 
 const getNoteById = async (noteId: string | undefined): Promise<INote> => {
-    const response = await Api.get(`notes/${noteId}`);
+    const response = await Api.get(`notes/note/${noteId}`);
 
     return response.data;
 }
