@@ -21,6 +21,16 @@ export interface IUserRegisterDTO {
     password: string
 }
 
+export interface IUserProfile {
+    id: string
+    username: string
+    firstName: string
+    lastName: string
+    age: number
+    dateOfBirth: Date
+    userIdentityFID: string
+}
+
 export interface IUserProfileDTO {
     username: string
     firstname: string
@@ -28,4 +38,9 @@ export interface IUserProfileDTO {
     age: number
     dateOfBirth: Date
     userIdentityFID: string
+}
+
+export interface ISubscriptionDTO {
+    subscriberFID: string
+    observableFID: string
 }

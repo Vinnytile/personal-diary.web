@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
-import { NotesLinePage } from './pages/NotesLinePage'
+import { SelfNotesLinePage } from './pages/SelfNotesLinePage'
 import { NoteViewPage } from './pages/NoteViewPage'
 import { NewNoteFormPage } from './pages/NewNoteFormPage';
 import { LoginPage } from './pages/LoginPage'
@@ -12,6 +12,8 @@ import { LoginFacePage } from './pages/LoginFacePage';
 import { LoginSwitcherPage } from './pages/LoginSwitcherPage';
 import { Navbar } from './components/Navbar/Navbar';
 import { RegisterProfilePage } from './pages/RegisterProfilePage';
+import { UserProfilesLinePage } from './pages/UserProfilesLinePage';
+import { GeneralNotesLinePage } from './pages/GeneralNotesLinePage';
 
 const App: React.FC = () => {
   return (
@@ -19,8 +21,9 @@ const App: React.FC = () => {
       <NavigateFunction />
       <Navbar />
       <Routes>
-        <Route element={<Navigate replace to="/notes" />} path="/" />
-        <Route element={<NotesLinePage />} path="/notes" />
+        <Route element={<Navigate replace to="/generalNotes" />} path="/" />
+        <Route element={<SelfNotesLinePage />} path="/selfNotes" />
+        <Route element={<GeneralNotesLinePage />} path="/generalNotes" />
         <Route element={<NoteViewPage />} path="/note/:id" />
         <Route element={<NewNoteFormPage />} path="/newNote" />
         <Route element={<LoginPage />} path="/login" />
@@ -29,6 +32,7 @@ const App: React.FC = () => {
         <Route element={<RegisterFacePage />} path="/registerFace/:userId" />
         <Route element={<RegisterProfilePage />} path="/registerProfile/:userIdentityId" />
         <Route element={<LoginSwitcherPage />} path="/loginSwitcher" />
+        <Route element={<UserProfilesLinePage />} path="/userProfiles" />
         <Route element={<ErrorPage />} path="*" />
       </Routes>
     </BrowserRouter>

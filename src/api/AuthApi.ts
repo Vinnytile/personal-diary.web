@@ -1,5 +1,5 @@
 import Api from "./Api";
-import { IUserLoginDTO, IUserRegisterDTO } from '../interfaces/interfaces'
+import { IUserLoginDTO, IUserProfileDTO, IUserRegisterDTO } from '../interfaces/interfaces'
 import LocalStorageApi from './LocalStorageApi'
 
 const login = async (userLoginDTO: IUserLoginDTO) => {
@@ -26,6 +26,12 @@ const registerFace = async (userId: string | undefined) => {
     const response = await Api.get(`auth/registerFace/${userId}`)
 }
 
+const registerProfile = async (userProfileDTO: IUserProfileDTO) => {
+    const response = await Api.post(`auth/registerProfile`, userProfileDTO)
+    
+    return response.data
+}
+
 const generateJwtToken = async (userId: string | undefined) => {
     const response = await Api.get(`auth/jwtToken/${userId}`)
     LocalStorageApi.setToken(response.data)
@@ -41,6 +47,7 @@ const exportedObject = {
     loginFace,
     register,
     registerFace,
+    registerProfile,
     generateJwtToken,
     logout
 };

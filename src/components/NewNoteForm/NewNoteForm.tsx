@@ -22,11 +22,11 @@ export const NewNoteForm: React.FC<NewNoteFormProps> = ({onAdd}) => {
         event.preventDefault();
         const text = JSON.stringify(value);
         await onAdd(description, text);
-        navigate('/notes');
+        navigate('/selfNotes');
     }
 
     const buttonDiscardClickHandler = (event: React.MouseEvent) => {
-        navigate('/notes');
+        navigate('/selfNotes');
     }
 
     const textareaChangeHandler = (event) => {

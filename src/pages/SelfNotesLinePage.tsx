@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { NotesLine } from '../components/NotesLine/NotesLine'
+import { SelfNotesLine } from '../components/SelfNotesLine/SelfNotesLine'
 import { INote } from "../interfaces/interfaces";
 import NoteApi from '../api/NoteApi'
 import JwtApi from "../api/JwtApi";
 import { useNavigate } from "react-router-dom";
 
-export const NotesLinePage: React.FC = () => {
+export const SelfNotesLinePage: React.FC = () => {
     const [notes, setNotes] = useState<INote[]>([])
     const navigate = useNavigate();
 
@@ -31,7 +31,7 @@ export const NotesLinePage: React.FC = () => {
     }
 
     return (
-            <NotesLine 
+            <SelfNotesLine 
                 notes={notes}
                 onRemove={removeHandler}
             />
