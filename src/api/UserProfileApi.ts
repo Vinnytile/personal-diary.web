@@ -1,14 +1,28 @@
-import { IUserProfileDTO } from "../interfaces/interfaces"
+import { ISubscriptionDTO, IUserProfile } from "../interfaces/interfaces"
 import Api from "./Api"
 
-const registerProfile = async (userProfileDTO: IUserProfileDTO) => {
-    const response = await Api.post(`userProfile/registerProfile`, userProfileDTO)
-    
-    return response.data
+const getUserProfiles = async (): Promise<IUserProfile[]> => {
+    const response = await Api.get(`userProfile`);
+
+    return response.data;
+};
+
+const subscribeUser = async (subscription: ISubscriptionDTO) => {
+    const response = await Api.post(`userProfile/subscribeUser`, subscription);
+
+    return response.data;
+}
+
+const unsubscribeUser = async (subscription: ISubscriptionDTO) => {
+    const response = await Api.post(`userProfile/unsubscribeUser`, subscription);
+
+    return response.data;
 }
 
 const exportedObject = {
-    registerProfile
+    getUserProfiles,
+    subscribeUser,
+    unsubscribeUser
 };
 
 export default exportedObject;

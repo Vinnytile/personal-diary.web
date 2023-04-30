@@ -1,8 +1,8 @@
 import React from "react";
 import { IUserProfileDTO } from "../interfaces/interfaces";
-import UserProfileApi from "../api/UserProfileApi";
 import { RegisterProfileForm } from "../components/RegisterProfileForm/RegisterProfileForm";
 import { useParams } from "react-router-dom";
+import AuthApi from "../api/AuthApi";
 
 export const RegisterProfilePage: React.FC = () => {
     const params = useParams();
@@ -18,7 +18,7 @@ export const RegisterProfilePage: React.FC = () => {
             userIdentityFID: params.userIdentityId
         }
 
-        await UserProfileApi.registerProfile(newUserProfile)
+        await AuthApi.registerProfile(newUserProfile)
     }
 
     return (

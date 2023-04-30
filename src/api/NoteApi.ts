@@ -7,6 +7,12 @@ const getNotes = async (userIdentityId: string | undefined): Promise<INote[]> =>
     return response.data;
 };
 
+const getObservedNotes = async (userIdentityId: string | undefined): Promise<INote[]> => {
+    const response = await Api.get(`notes/observed/${userIdentityId}`);
+
+    return response.data;
+};
+
 const getNoteById = async (noteId: string | undefined): Promise<INote> => {
     const response = await Api.get(`notes/note/${noteId}`);
 
@@ -31,6 +37,7 @@ const deleteNote = async (noteId: string | undefined): Promise<void> => {
 
 const exportedObject = {
     getNotes,
+    getObservedNotes,
     getNoteById,
     createNote,
     changeNote,

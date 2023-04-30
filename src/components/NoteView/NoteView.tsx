@@ -38,12 +38,12 @@ export const NoteView: React.FC<NoteProps> = ({note, onSave, onDelete}) => {
     }
 
     const buttonDiscardClickHandler = (event: React.MouseEvent) => {
-        navigate('/notes');
+        navigate('/selfNotes');
     }
 
     const buttonDeleteClickHandler = async (event: React.MouseEvent) => {
         await onDelete();
-        navigate('/notes');
+        navigate('/selfNotes');
     }
 
     return (

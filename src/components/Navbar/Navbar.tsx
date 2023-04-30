@@ -6,6 +6,16 @@ import './NavbarStyle.scss'
 export const Navbar: React.FC = () => {
     const navigate = useNavigate();
 
+    const myNotesClickHandler = (event: React.MouseEvent) => {
+        event.preventDefault()
+        navigate('/selfNotes')
+    }
+
+    const userProfilesClickHandler = (event: React.MouseEvent) => {
+        event.preventDefault()
+        navigate('/userProfiles')
+    }
+
     const loginClickHandler = (event: React.MouseEvent) => {
         event.preventDefault()
         navigate('/loginSwitcher')
@@ -24,8 +34,10 @@ export const Navbar: React.FC = () => {
     return (
             <nav className="navbar navbar-light navbar-general fixed-top">
                 <div className="container-fluid">
-                    <a className="navbar-brand" href="/notes">Personal Diary</a>
+                    <a className="navbar-brand" href="/generalNotes">Personal Diary</a>
                     <div className="navbar-content">
+                        <button className="navbar-button" onClick={myNotesClickHandler}>My notes</button>
+                        <button className="navbar-button" onClick={userProfilesClickHandler}>User Profiles</button>
                         <button className="navbar-button" onClick={loginClickHandler}>Login</button>
                         <button className="navbar-button" onClick={registerClickHandler}>Register</button>
                         <button className="navbar-button" onClick={logoutClickHandler}>Logout</button>

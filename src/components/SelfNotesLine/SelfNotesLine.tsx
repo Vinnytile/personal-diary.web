@@ -2,15 +2,15 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { INote } from "../../interfaces/interfaces";
 import { NotePreview } from "../NotePreview/NotePreview";
-import './NotesLineStyle.scss'
+import './SelfNotesLineStyle.scss'
 
 
-type NotesLineProps = {
+type SelfNotesLineProps = {
     notes: INote[]
     onRemove(noteId: string): void
 }
 
-export const NotesLine: React.FC<NotesLineProps> = ({notes, onRemove}) => {
+export const SelfNotesLine: React.FC<SelfNotesLineProps> = ({notes, onRemove}) => {
     const navigate = useNavigate();
 
     const createNewNoteClickHandler = () => {

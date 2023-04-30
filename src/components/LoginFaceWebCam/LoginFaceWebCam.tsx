@@ -89,7 +89,7 @@ export const LoginFaceWebCam: React.FC<LoginFaceWebCamProps> = ({regFace, msgDat
 	  	window.clearInterval(intervalId2)
       	window.clearInterval(intervalId)
       	updateIsClose(true)
-      	navigate('/notes');
+      	navigate('/selfNotes');
     }
 
     const setSave = () => {
