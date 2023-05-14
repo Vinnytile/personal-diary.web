@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { ISubscriptionDTO, IUserProfile } from "../interfaces/interfaces";
 import UserProfileApi from "../api/UserProfileApi";
 import { UserProfilesLine } from "../components/UserProfilesLine/UserProfilesLine";
 import JwtApi from "../api/JwtApi";
 
 export const UserProfilesLinePage: React.FC = () => {
+    const [initialUserProfiles, setInitialUserProfiles] = useState<IUserProfile[]>([])
     const [userProfiles, setUserProfiles] = useState<IUserProfile[]>([])
 
     const fetchData = async () => {
@@ -19,12 +20,32 @@ export const UserProfilesLinePage: React.FC = () => {
             data.splice(indexOfObject, 1);
         }
 
+        setInitialUserProfiles(data)
         setUserProfiles(data)
     };
 
     useEffect(()  => {
         fetchData()
     }, [])
+
+    const searchUserHandler = async (searchPredicate: string): Promise<void> => {
+        console.log(searchPredicate)
+
+        console.log(userProfiles)
+
+        if (searchPredicate !== '') {
+            const searchedProfiles = initialUserProfiles.filter((obj) => {
+                return obj.firstName.includes(searchPredicate)
+            })
+    
+            console.log(searchedProfiles)
+    
+            setUserProfiles(searchedProfiles)
+        }
+        else {
+            setUserProfiles(initialUserProfiles)
+        }
+    }
 
     const subscribeUserHandler = async (observableId: string): Promise<void> => {
         const userIdentityId: string = JwtApi.getUserIdFromJwt()
@@ -47,10 +68,11 @@ export const UserProfilesLinePage: React.FC = () => {
     }
 
     return (
-            <UserProfilesLine 
-                userProfiles={userProfiles}
-                onSubscribe={subscribeUserHandler}
-                onUnsubscribe={unsubscribeUserHandler}
-            />
+        <UserProfilesLine 
+            userProfiles={userProfiles}
+            onSubscribe={subscribeUserHandler}
+            onUnsubscribe={unsubscribeUserHandler}
+            onSearch={searchUserHandler}
+        />
     );
 }
