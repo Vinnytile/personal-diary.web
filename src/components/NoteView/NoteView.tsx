@@ -1,30 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { INote } from "../../interfaces/interfaces";
 import './NoteViewStyle.scss'
-import type { Value } from '@react-page/editor';
-import Editor from '@react-page/editor';
-import '@react-page/editor/lib/index.css';
-import slate from '@react-page/plugins-slate';
-import '@react-page/plugins-slate/lib/index.css';
 import { useNavigate } from "react-router-dom";
-
-const cellPlugins = [slate()];
 
 type NoteProps = {
     note: INote | undefined
-    onSave(description: string, text: string): void
+    onGenerateSummary(text: string): Promise<string>
+    onSave(description: string, text: string, summary: string): void
     onDelete(): void
 }
 
-export const NoteView: React.FC<NoteProps> = ({note, onSave, onDelete}) => {
+export const NoteView: React.FC<NoteProps> = ({note, onGenerateSummary, onSave, onDelete}) => {
     const [description, setDescription] = useState<string>('')
-    const [text, setText] = useState<Value>(null);
+    const [summary, setSummary] = useState<string>('')
+    const [text, setText] = useState<string>('')
     const navigate = useNavigate();
 
     useEffect(() => {
         if (note) {
             setDescription(note.description)
-            setText(JSON.parse(note.text))
+            setText(note.text)
+            setSummary(note.summary)
         }
     }, [note]);
 
@@ -32,9 +28,21 @@ export const NoteView: React.FC<NoteProps> = ({note, onSave, onDelete}) => {
         setDescription(event.target.value);
     }
 
+    const textChangeHandler = (event) => {
+        setText(event.target.value);
+    }
+
+    const buttonGenerateSummaryClickHandler = async (event) => {
+        await onSave(description, text, summary);
+
+        const summaryText = await onGenerateSummary(text);
+        setSummary(summaryText);
+
+        await onSave(description, text, summaryText);
+    }
+
     const buttonSaveClickHandler = async (event) => {
-        const textJson = JSON.stringify(text);
-        await onSave(description, textJson);
+        await onSave(description, text, summary);
     }
 
     const buttonDiscardClickHandler = (event: React.MouseEvent) => {
@@ -57,12 +65,32 @@ export const NoteView: React.FC<NoteProps> = ({note, onSave, onDelete}) => {
                 >
                 </textarea>
             </div>
-
-            <Editor 
-                cellPlugins={cellPlugins} 
-                value={text} 
-                onChange={setText}
-            />
+            <div className="summary-noteview">
+                <textarea 
+                    id="summary-textarea"
+                    value={summary}
+                    onChange={()=>{}}
+                    className="form-control summary-textarea-noteview"
+                >
+                </textarea>
+            </div>
+            <div>
+                <button
+                    onClick={event => buttonGenerateSummaryClickHandler(event)}
+                    className="btn btn-primary noteview-button"
+                >
+                    Generate summary
+                </button>
+            </div>
+            <div className="text-noteview">
+                <textarea 
+                    id="text-textarea"
+                    value={text}
+                    onChange={event => textChangeHandler(event)}
+                    className="form-control text-textarea-noteview"
+                >
+                </textarea>
+            </div>
 
             <div>
             <div>

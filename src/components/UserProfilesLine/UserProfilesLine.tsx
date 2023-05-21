@@ -15,7 +15,7 @@ export const UserProfilesLine: React.FC<UserProfilesLineProps> = ({userProfiles,
 
     return (
         <div className="userprofilesline-main">
-            <div>
+            <div className="userprofilesline-search">
                 <label htmlFor="searchuser" className="form-label"> 
                     Search user:
                 </label>
@@ -23,12 +23,12 @@ export const UserProfilesLine: React.FC<UserProfilesLineProps> = ({userProfiles,
                         ref={refUserSearch} 
                         type="text" 
                         id="searchuser" 
-                        placeholder="your_email@gmail.com"
-                        className="form-control form-control-own-reg"
+                        placeholder="try search user..."
+                        className="form-control form-control-own-search"
                         onChange={()=> onSearch(refUserSearch.current.value)}
                     />
             </div>
-            <div>
+            <div className="userprofilesline-ul-div">
                 <ul>
                     {userProfiles.map(userProfile => {
                         return (

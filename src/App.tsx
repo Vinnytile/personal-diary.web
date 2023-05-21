@@ -14,6 +14,7 @@ import { Navbar } from './components/Navbar/Navbar';
 import { RegisterProfilePage } from './pages/RegisterProfilePage';
 import { UserProfilesLinePage } from './pages/UserProfilesLinePage';
 import { GeneralNotesLinePage } from './pages/GeneralNotesLinePage';
+import { NotePreviewPage } from './pages/NotePreviewPage';
 
 const App: React.FC = () => {
   return (
@@ -25,6 +26,7 @@ const App: React.FC = () => {
         <Route element={<SelfNotesLinePage />} path="/selfNotes" />
         <Route element={<GeneralNotesLinePage />} path="/generalNotes" />
         <Route element={<NoteViewPage />} path="/note/:id" />
+        <Route element={<NotePreviewPage />} path="/notepreview/:id" />
         <Route element={<NewNoteFormPage />} path="/newNote" />
         <Route element={<LoginPage />} path="/login" />
         <Route element={<LoginFacePage />} path="/loginFace" />

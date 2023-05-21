@@ -29,16 +29,13 @@ export const UserProfilesLinePage: React.FC = () => {
     }, [])
 
     const searchUserHandler = async (searchPredicate: string): Promise<void> => {
-        console.log(searchPredicate)
-
-        console.log(userProfiles)
-
         if (searchPredicate !== '') {
             const searchedProfiles = initialUserProfiles.filter((obj) => {
-                return obj.firstName.includes(searchPredicate)
+                const foundUsers = obj.firstName.includes(searchPredicate)
+                || obj.lastName.includes(searchPredicate)
+                || obj.username.includes(searchPredicate)
+                return foundUsers
             })
-    
-            console.log(searchedProfiles)
     
             setUserProfiles(searchedProfiles)
         }

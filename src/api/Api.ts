@@ -2,6 +2,7 @@ import axios from "axios";
 import LocalStorageApi from './LocalStorageApi'
 
 const BASE_URL = "https://localhost:5001/api/";
+const PYTHON_URL = "http://localhost:5003/"
 
 axios.interceptors.request.use(
   config => {
@@ -22,7 +23,7 @@ const setupResponseInterceptors = (navigate: any) => {
     error => {
       if (error.response) {
         if (error.response.status === 401 || error.response.status === 403) {
-          navigate('/loginSwitcher');
+          navigate('/login');
         }
       }
       
@@ -67,11 +68,23 @@ const remove = async (url: string) => {
     return response;
 };
 
+const postPython = async (url: string, data?: any) => {
+  const response = await axios.post(PYTHON_URL + url, data, {
+    headers: {
+      "Accept": "application/json",
+      "Content-Type": 'application/json',
+    },
+  });
+
+  return response;
+};
+
 const exportedObject = {
     get,
     post,
     put,
     remove,
+    postPython,
     setupResponseInterceptors
 };
 

@@ -19,7 +19,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({onLogin}) => {
             refEmail.current!.value = ''
             refPassword.current!.value = ''
             
-            navigate('/selfNotes')
+            navigate('/generalNotes')
         }
     }
 

@@ -17,7 +17,7 @@ export const GeneralNotesLinePage: React.FC = () => {
             setNotes(data)
         }
         catch (error) {
-            navigate('/loginSwitcher');
+            navigate('/login');
         }
     };
 

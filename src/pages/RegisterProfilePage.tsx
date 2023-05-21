@@ -7,13 +7,12 @@ import AuthApi from "../api/AuthApi";
 export const RegisterProfilePage: React.FC = () => {
     const params = useParams();
 
-    const registerProfileHandler = async (username: string, firstname: string, lastname: string,
-        age: number, dateOfBirth: Date): Promise<void> => {
+    const registerProfileHandler = async (username: string, firstname: string,
+        lastname: string, dateOfBirth: Date): Promise<void> => {
         const newUserProfile: IUserProfileDTO = {
             username: username,
             firstname: firstname,
             lastname: lastname,
-            age: age,
             dateOfBirth: dateOfBirth,
             userIdentityFID: params.userIdentityId
         }

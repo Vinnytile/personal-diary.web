@@ -4,19 +4,18 @@ import './RegisterFormStyle.scss';
 
 type RegisterFormProps = {
     userId: MutableRefObject<string>
-    onRegister(email: string, username: string, password: string): void
+    onRegister(email: string, password: string): void
 }
 
 export const RegisterForm: React.FC<RegisterFormProps> = ({userId, onRegister}) => {
     const [disable, setDisable] = React.useState(true);
     const refEmail = useRef<HTMLInputElement>(null)
-    const refUsername = useRef<HTMLInputElement>(null)
     const refPassword = useRef<HTMLInputElement>(null)
     const navigate = useNavigate();
 
     const registerClickHandler = async (event: React.MouseEvent) => {
         event.preventDefault()
-        await onRegister(refEmail.current!.value, refUsername.current!.value, refPassword.current!.value)
+        await onRegister(refEmail.current!.value, refPassword.current!.value)
         
         if (userId.current)
         {
@@ -26,7 +25,6 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({userId, onRegister}) 
 
     const registerFaceClickHandler = (event: React.MouseEvent) => {
         refEmail.current!.value = ''
-        refUsername.current!.value = ''
         refPassword.current!.value = ''
 
         //navigate(`/registerFace/${userId.current}`);
@@ -44,18 +42,6 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({userId, onRegister}) 
                         type="text" 
                         id="email" 
                         placeholder="your_email@gmail.com"
-                        className="form-control form-control-own-reg"
-                    />
-                </div>
-                <div className="form-group form-group-own-reg">
-                    <label htmlFor="username" className="form-label"> 
-                        Your Username:
-                    </label>
-                    <input
-                        ref={refUsername} 
-                        type="text" 
-                        id="username" 
-                        placeholder="your_username"
                         className="form-control form-control-own-reg"
                     />
                 </div>
@@ -84,7 +70,8 @@ export const RegisterForm: React.FC<RegisterFormProps> = ({userId, onRegister}) 
                         hidden={disable}
                         className="btn btn-primary reg-button"
                     >
-                        Add faceId
+                        {/* Add faceId */}
+                        Create profile
                     </button>
                 </div>
             </form>
