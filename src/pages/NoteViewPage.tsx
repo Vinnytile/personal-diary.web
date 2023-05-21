@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import JwtApi from "../api/JwtApi";
 import NoteApi from "../api/NoteApi";
 import { NoteView } from "../components/NoteView/NoteView";
-import { INote, INoteDTO } from '../interfaces/interfaces'
+import { IGenerateNoteSummaryDTO, INote, INoteDTO } from '../interfaces/interfaces'
 
 export const NoteViewPage: React.FC = () => {
     const params = useParams();
@@ -20,12 +20,24 @@ export const NoteViewPage: React.FC = () => {
         fetchData()
     }, [])
 
-    const saveHandler = async (description: string, text: string): Promise<void> => {
+    const generateSummaryHandler = async (noteText): Promise<string> => {
+        const generateNoteSummaryDTO: IGenerateNoteSummaryDTO = {
+            text: noteText
+        }
+        const json = JSON.stringify(generateNoteSummaryDTO);
+
+        const summary = await NoteApi.generateNoteSummary(json);
+
+        return summary
+    }
+
+    const saveHandler = async (description: string, text: string, summary: string): Promise<void> => {
         const userIdentityId: string = JwtApi.getUserIdFromJwt()
         const newNote: INoteDTO = {
           description: description,
           text: text,
-          userIdentityFID: userIdentityId
+          userIdentityFID: userIdentityId,
+          summary: summary
         }
 
         await NoteApi.changeNote(params.id, newNote)
@@ -36,6 +48,6 @@ export const NoteViewPage: React.FC = () => {
     }
 
     return (
-        <NoteView note={note} onSave={saveHandler} onDelete={deleteHandler}/>
+        <NoteView note={note} onGenerateSummary={generateSummaryHandler} onSave={saveHandler} onDelete={deleteHandler}/>
     );
 }

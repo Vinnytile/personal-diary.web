@@ -1,23 +1,44 @@
 @use '../../colors';
 
-.noteinline-general {
+.general-form-notepreview {
     background-color: colors.$form-color;
-    border-radius: 1.2rem;
-    width: 80%;
-
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 2rem;
-
-    padding: 2rem;
-}
-
-.noteinline-description {
-    margin-bottom: 1rem;
     text-align: center;
+    position: absolute;
+    padding: 20px;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+
+    border-radius: 1.5rem;
+    color: colors.$text-color;
+    margin-top: 1rem;
 }
 
-.noteinline-text {
-    height: 10rem;
-    overflow: hidden;
+.description-notepreview {
+    margin-bottom: 2rem;
+}
+
+.description-textarea-notepreview {
+    margin-top: 1rem;
+    resize: none;
+}
+
+.summary-notepreview {
+    margin-bottom: 2rem;
+}
+
+.summary-textarea-notepreview {
+    margin-top: 1rem;
+    resize: none;
+}
+
+.text-notepreview {
+    margin-bottom: 2rem;
+}
+
+.text-textarea-notepreview {
+    margin-top: 1rem;
+    resize: none;
+    height: 15rem;
 }

@@ -1,32 +1,55 @@
-import React, { useState } from "react";
-import Editor from '@react-page/editor';
-import type { Value } from '@react-page/editor';
-import '@react-page/editor/lib/index.css';
-import slate from '@react-page/plugins-slate';
-import '@react-page/plugins-slate/lib/index.css';
+import React, { useEffect, useState } from "react";
 import { INote } from "../../interfaces/interfaces";
 import './NotePreviewStyle.scss'
 
-const cellPlugins = [slate()];
-
 type NotePreviewProps = {
-    note: INote
+    note: INote | undefined
 }
 
 export const NotePreview: React.FC<NotePreviewProps> = ({note}) => {
-    const [value, setValue] = useState<Value>(JSON.parse(note.text));
+    const [description, setDescription] = useState<string>('')
+    const [summary, setSummary] = useState<string>('')
+    const [text, setText] = useState<string>('')
+
+    useEffect(() => {
+        if (note) {
+            setDescription(note.description)
+            setText(note.text)
+            setSummary(note.summary)
+        }
+    }, [note]);
 
     return (
-        <div className="noteinline-general">
-            <div className="noteinline-description">
-                {note.description}
-            </div>
-            <div className="noteinline-text">
-                <Editor 
-                    value={value} 
-                    cellPlugins={cellPlugins} 
+        <div className="w-50 general-form-notepreview">
+            <div className="description-notepreview">
+                <textarea 
+                    id="description-textarea"
+                    value={description}
+                    onChange={() => {}}
+                    className="form-control description-textarea-notepreview"
                     readOnly
-                />
+                >
+                </textarea>
+            </div>
+            <div className="summary-notepreview">
+                <textarea 
+                    id="summary-textarea"
+                    value={summary}
+                    onChange={() => {}}
+                    className="form-control summary-textarea-notepreview"
+                    readOnly
+                >
+                </textarea>
+            </div>
+            <div className="text-notepreview">
+                <textarea 
+                    id="text-textarea"
+                    value={text}
+                    onChange={() => {}}
+                    className="form-control text-textarea-notepreview"
+                    readOnly
+                >
+                </textarea>
             </div>
         </div>
     );

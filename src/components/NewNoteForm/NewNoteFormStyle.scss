@@ -12,7 +12,7 @@
 
     border-radius: 1.5rem;
     color: colors.$text-color;
-    margin-top: 15rem;
+    margin-top: 20rem;
 }
 
 .description-newnote {
@@ -24,6 +24,25 @@
     resize: none;
 }
 
+.summary-newnote {
+    margin-bottom: 2rem;
+}
+
+.summary-textarea-newnote {
+    margin-top: 1rem;
+    resize: none;
+}
+
+.text-newnote {
+    margin-bottom: 2rem;
+}
+
+.text-textarea-newnote {
+    margin-top: 1rem;
+    resize: none;
+    height: 500px;
+}
+
 .newnote-button {
     background-color: colors.$button-color !important;
     color: colors.$text-color !important;
@@ -31,8 +50,8 @@
     height: 4rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    margin-left: 8rem;
-    margin-right: 8rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
 
     border: none !important;
 }

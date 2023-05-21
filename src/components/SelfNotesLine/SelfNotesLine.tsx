@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { INote } from "../../interfaces/interfaces";
-import { NotePreview } from "../NotePreview/NotePreview";
+import { GeneralNotePreview } from "../GeneralNotePreview/GeneralNotePreview";
 import './SelfNotesLineStyle.scss'
 
 
@@ -35,7 +35,7 @@ export const SelfNotesLine: React.FC<SelfNotesLineProps> = ({notes, onRemove}) =
                 {notes.map(note => {
                     return (
                         <li key={note.id} onClick={event => noteClickHandler(note.id)} className="notesline-li">
-                            <NotePreview note={note}/>
+                            <GeneralNotePreview note={note}/>
                         </li>
                     )
                 })}

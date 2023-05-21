@@ -1,7 +1,7 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { INote } from "../../interfaces/interfaces";
-import { NotePreview } from "../NotePreview/NotePreview";
+import { GeneralNotePreview } from "../GeneralNotePreview/GeneralNotePreview";
 import './GeneralNotesLineStyle.scss'
 
 
@@ -13,7 +13,7 @@ export const GeneralNotesLine: React.FC<GeneralNotesLineProps> = ({notes}) => {
     const navigate = useNavigate();
 
     const noteClickHandler = (noteId: string) => {
-        //navigate(`/note/${noteId}`);
+        navigate(`/notepreview/${noteId}`);
     }
 
     return (
@@ -22,7 +22,7 @@ export const GeneralNotesLine: React.FC<GeneralNotesLineProps> = ({notes}) => {
                 {notes.map(note => {
                     return (
                         <li key={note.id} onClick={event => noteClickHandler(note.id)} className="notesline-li">
-                            <NotePreview note={note}/>
+                            <GeneralNotePreview note={note}/>
                         </li>
                     )
                 })}

@@ -1,33 +1,33 @@
 import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import DatePicker from "react-datepicker";
+import './RegisterProfileFormStyle.scss';
 
 import "react-datepicker/dist/react-datepicker.css";
 
 type RegisterProfileFormProps = {
-    onRegister(username: string, firstname: string, lastname: string,
-        age: number, dateOfBirth: Date): void
+    onRegister(username: string, firstname: string,
+        lastname: string, dateOfBirth: Date): void
 }
 
 export const RegisterProfileForm: React.FC<RegisterProfileFormProps> = ({onRegister}) => {
     const refUsername = useRef<HTMLInputElement>(null)
     const refFirstname= useRef<HTMLInputElement>(null)
     const refLastname= useRef<HTMLInputElement>(null)
-    const refAge= useRef<HTMLInputElement>(null)
     const [dateOfBirth, setDateOfBirth] = useState(new Date());
     const navigate = useNavigate();
 
     const registerProfileClickHandler = async (event: React.MouseEvent) => {
         event.preventDefault()
-        await onRegister(refUsername.current!.value, refFirstname.current!.value, refLastname.current!.value,
-            Number(refAge.current!.value), dateOfBirth)
+        await onRegister(refUsername.current!.value, refFirstname.current!.value,
+            refLastname.current!.value, dateOfBirth)
         
         navigate('/login');
     }
 
     return (
-            <form className="w-25 mx-auto general-form-reg shadow">
-                <div className="form-group form-group-own-reg">
+            <form className="w-25 mx-auto general-form-profile-reg shadow">
+                <div className="form-group form-group-own-profile-reg">
                     <label htmlFor="username" className="form-label"> 
                         Your Username:
                     </label>
@@ -36,10 +36,10 @@ export const RegisterProfileForm: React.FC<RegisterProfileFormProps> = ({onRegis
                         type="text" 
                         id="username" 
                         placeholder="your_username"
-                        className="form-control form-control-own-reg"
+                        className="form-control form-control-own-profile-reg"
                     />
                 </div>
-                <div className="form-group form-group-own-reg">
+                <div className="form-group form-group-own-profile-reg">
                     <label htmlFor="firstname" className="form-label"> 
                         Your Firstname:
                     </label>
@@ -48,10 +48,10 @@ export const RegisterProfileForm: React.FC<RegisterProfileFormProps> = ({onRegis
                         type="text" 
                         id="firstname" 
                         placeholder="your_firstname"
-                        className="form-control form-control-own-reg"
+                        className="form-control form-control-own-profile-reg"
                     />
                 </div>
-                <div className="form-group form-group-own-reg">
+                <div className="form-group form-group-own-profile-reg">
                     <label htmlFor="lastname" className="form-label"> 
                         Your Lastname:
                     </label>
@@ -60,22 +60,10 @@ export const RegisterProfileForm: React.FC<RegisterProfileFormProps> = ({onRegis
                         type="text" 
                         id="lastname" 
                         placeholder="your_lastname"
-                        className="form-control form-control-own-reg"
+                        className="form-control form-control-own-profile-reg"
                     />
                 </div>
-                <div className="form-group form-group-own-reg">
-                    <label htmlFor="age" className="form-label"> 
-                        Your Age:
-                    </label>
-                    <input
-                        ref={refAge} 
-                        type="text" 
-                        id="age" 
-                        placeholder="your_age"
-                        className="form-control form-control-own-reg"
-                    />
-                </div>
-                <div className="form-group form-group-own-reg">
+                <div className="form-group form-group-own-profile-reg">
                     <label htmlFor="dateOfBirth" className="form-label"> 
                         Your DateOfBirth:
                     </label>
@@ -87,9 +75,9 @@ export const RegisterProfileForm: React.FC<RegisterProfileFormProps> = ({onRegis
                 <div>
                     <button
                         onClick={event => registerProfileClickHandler(event)}
-                        className="btn btn-primary reg-button"
+                        className="btn btn-primary profile-reg-button"
                     >
-                        Register Profile
+                        Create profile
                     </button>
                 </div>
             </form>

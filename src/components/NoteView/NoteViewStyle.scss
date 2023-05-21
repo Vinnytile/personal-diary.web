@@ -12,7 +12,7 @@
 
     border-radius: 1.5rem;
     color: colors.$text-color;
-    margin-top: 15rem;
+    margin-top: 10rem;
 }
 
 .description-noteview {
@@ -24,6 +24,25 @@
     resize: none;
 }
 
+.summary-noteview {
+    margin-bottom: 2rem;
+}
+
+.summary-textarea-noteview {
+    margin-top: 1rem;
+    resize: none;
+}
+
+.text-noteview {
+    margin-bottom: 2rem;
+}
+
+.text-textarea-noteview {
+    margin-top: 1rem;
+    resize: none;
+    height: 15rem;
+}
+
 .noteview-button {
     background-color: colors.$button-color !important;
     color: colors.$text-color !important;
@@ -31,8 +50,8 @@
     height: 4rem;
     margin-top: 2rem;
     margin-bottom: 2rem;
-    margin-left: 4rem;
-    margin-right: 4rem;
+    margin-left: 1rem;
+    margin-right: 1rem;
 
     border: none !important;
 }
