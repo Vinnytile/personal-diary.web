@@ -12,7 +12,7 @@
 
     border-radius: 1.5rem;
     color: colors.$text-color;
-    margin-top: 10rem;
+    margin-top: 100px;
 }
 
 .description-noteview {
@@ -20,15 +20,6 @@
 }
 
 .description-textarea-noteview {
-    margin-top: 1rem;
-    resize: none;
-}
-
-.summary-noteview {
-    margin-bottom: 2rem;
-}
-
-.summary-textarea-noteview {
     margin-top: 1rem;
     resize: none;
 }

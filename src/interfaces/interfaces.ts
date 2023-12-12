@@ -1,8 +1,12 @@
+import { SentimentsTypes } from "./enums"
+
 export interface INote {
     id: string
     description: string
     text: string
     summary: string
+    sentiments: SentimentsTypes
+    namedEntities: string
 }
 
 export interface INoteDTO {
@@ -10,6 +14,8 @@ export interface INoteDTO {
     text: string
     userIdentityFID: string
     summary: string
+    sentiments?: SentimentsTypes,
+    namedEntities: string
 }
 
 export interface IUserLoginDTO {

@@ -5,14 +5,12 @@ import { useNavigate } from "react-router-dom";
 
 type NoteProps = {
     note: INote | undefined
-    onGenerateSummary(text: string): Promise<string>
-    onSave(description: string, text: string, summary: string): void
+    onSave(description: string, text: string): void
     onDelete(): void
 }
 
-export const NoteView: React.FC<NoteProps> = ({note, onGenerateSummary, onSave, onDelete}) => {
+export const NoteView: React.FC<NoteProps> = ({note, onSave, onDelete}) => {
     const [description, setDescription] = useState<string>('')
-    const [summary, setSummary] = useState<string>('')
     const [text, setText] = useState<string>('')
     const navigate = useNavigate();
 
@@ -20,7 +18,6 @@ export const NoteView: React.FC<NoteProps> = ({note, onGenerateSummary, onSave, 
         if (note) {
             setDescription(note.description)
             setText(note.text)
-            setSummary(note.summary)
         }
     }, [note]);
 
@@ -32,17 +29,8 @@ export const NoteView: React.FC<NoteProps> = ({note, onGenerateSummary, onSave, 
         setText(event.target.value);
     }
 
-    const buttonGenerateSummaryClickHandler = async (event) => {
-        await onSave(description, text, summary);
-
-        const summaryText = await onGenerateSummary(text);
-        setSummary(summaryText);
-
-        await onSave(description, text, summaryText);
-    }
-
     const buttonSaveClickHandler = async (event) => {
-        await onSave(description, text, summary);
+        await onSave(description, text);
     }
 
     const buttonDiscardClickHandler = (event: React.MouseEvent) => {
@@ -64,23 +52,6 @@ export const NoteView: React.FC<NoteProps> = ({note, onGenerateSummary, onSave, 
                     className="form-control description-textarea-noteview"
                 >
                 </textarea>
-            </div>
-            <div className="summary-noteview">
-                <textarea 
-                    id="summary-textarea"
-                    value={summary}
-                    onChange={()=>{}}
-                    className="form-control summary-textarea-noteview"
-                >
-                </textarea>
-            </div>
-            <div>
-                <button
-                    onClick={event => buttonGenerateSummaryClickHandler(event)}
-                    className="btn btn-primary noteview-button"
-                >
-                    Generate summary
-                </button>
             </div>
             <div className="text-noteview">
                 <textarea 
