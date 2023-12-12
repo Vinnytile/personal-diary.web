@@ -35,21 +35,13 @@ const deleteNote = async (noteId: string | undefined): Promise<void> => {
     const response = await Api.remove(`notes/${noteId}`);
 }
 
-const generateNoteSummary = async (noteJson: string) => {
-    const response = await Api.postPython(`summarize`, noteJson);
-    //const response = await Api.getPython(`test`);
-
-    return response.data;
-}
-
 const exportedObject = {
     getNotes,
     getObservedNotes,
     getNoteById,
     createNote,
     changeNote,
-    deleteNote,
-    generateNoteSummary
+    deleteNote
 };
 
 export default exportedObject;

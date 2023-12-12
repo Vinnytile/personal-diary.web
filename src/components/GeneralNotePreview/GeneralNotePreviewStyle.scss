@@ -21,3 +21,48 @@
     height: 10rem;
     overflow: hidden;
 }
+
+.noteinline-sentiments {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+    padding-left: 10px;
+}
+
+.noteinline-sentiments-block {
+    height: 20px;
+    width: 20px;
+    margin-left: 10px;
+}
+
+.noteinline-namedentities {
+    margin-top: 15px;
+}
+
+.noteinline-namedentities-text {
+    margin-left: 10px;
+}
+
+.sentiments-negative {
+    background: colors.$sentiments-negative-color;
+}
+
+.sentiments-neutral {
+    background: colors.$sentiments-neutral-color;
+}
+
+.sentiments-positive {
+    background: colors.$sentiments-positive-color;
+}
+
+.text-textarea-noteinline {
+    margin-top: 1rem;
+    resize: none;
+    height: 500px;
+}
+
+.text-textarea-namedentities {
+    resize: none;
+    height: 150px;
+    margin-top: 5px;
+}
